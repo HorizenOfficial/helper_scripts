@@ -36,32 +36,27 @@ optional arguments:
 
 Example output:
 ```shell
-$ python3 merge_to_address.py -d zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws -f zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY -u user -p password
-s -r http://127.0.0.1:18231
+$ python3 merge_to_address.py -d zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws -f zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY -u user -p password -r http://127.0.0.1:18231
 #
 #Commands for address: zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY
 #Transaction 1:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.07691359}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.11708846}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 2:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.09723825}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.13708757}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 3:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.11708846}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.15574512}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 4:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.13708757}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.17505940}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 5:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.15574512}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.19644559}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 6:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.17505940}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.21691195}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 7:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.19644559}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.23715688}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 8:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.21691195}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.25660608}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 9:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.23715688}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.27687864}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 #Transaction 10:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.25660608}]' 1 0.0001
-#Transaction 11:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.27687864}]' 1 0.0001
-#Transaction 12:
-zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.17557649}]' 1 0.0001
+OPID=$(zen-cli z_sendmany "zta3WgVaAKS7kVReNUdhaBgW9FqVCrk5PcY" '[{"address": "zto4YEJgg4dvbkGebcDiY2E2EYrcB1Qj5ws", "amount": 0.17557649}]' 1 0.0001); sleep 5 && zen-cli z_getoperationstatus '["'$OPID'"]' && echo -e "\n\nPlease verify that the output contains \"status\": \"success\".\n\nIf this is not the case, please run the python script again and retry with the same address or a different address.\n" && read -p "Press enter to continue."
 ```

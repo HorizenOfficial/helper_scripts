@@ -30,17 +30,18 @@ def group_by_address(spendable_utxo):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-d", "--destinationaddr", dest="dest_addr", type=str,
+    requiredNamed = parser.add_argument_group('required arguments')
+    requiredNamed.add_argument("-d", "--destinationaddr", dest="dest_addr", type=str,
                         required=True, help="ZEN address to send to")
     parser.add_argument("-f", "--fromaddr", dest="from_addr", nargs="+", default=[],
                         required=False, help="ZEN addresses to send from, space separated e.g. \"-f addr1 addr2\"")
     parser.add_argument("--min-conf", dest="min_conf", nargs="?", type=int, default=1, const=1,
                         required=False, help="minumum number of confirmations to pass to listunspent (default 1)")
-    parser.add_argument("-u", "--rpc-user", dest="rpc_user", type=str,
-                        required=False, help="zend RPC username")
-    parser.add_argument("-p", "--rpc-password", dest="rpc_pass", type=str,
-                        required=False, help="zend RPC password")
-    parser.add_argument("-r", "--rpc-url", dest="rpc_url", type=str,
+    requiredNamed.add_argument("-u", "--rpc-user", dest="rpc_user", type=str,
+                        required=True, help="zend RPC username")
+    requiredNamed.add_argument("-p", "--rpc-password", dest="rpc_pass", type=str,
+                        required=True, help="zend RPC password")
+    requiredNamed.add_argument("-r", "--rpc-url", dest="rpc_url", type=str,
                         required=True, help="zend RPC interface to connect to, e.g. \"http://127.0.0.1:8231\"")
     parser.add_argument("-t", "--rpc-timeout", dest="rpc_timeout", nargs="?", type=int, default=300, const=300,
                         required=False, help="timeout for RPC requests in seconds (default 300)")
@@ -91,7 +92,11 @@ def main():
             warning = ""
             if amount - FEE < DUST_THRESHOLD:
                 warning = "#Error: Transaction output below dust threshold "
-            command = warning + "zen-cli z_sendmany \"" + address  + "\" '[{\"address\": \"" + DEST_ADDR + "\", \"amount\": " + str(amount - FEE) + "}]' " + str(MIN_CONF) + " " + str(FEE)
+            command = (warning + "OPID=$(zen-cli z_sendmany \"" + address  + "\" '[{\"address\": \"" + DEST_ADDR + "\", \"amount\": " +
+                       str(amount - FEE) + "}]' " + str(MIN_CONF) + " " + str(FEE) + "); sleep 5 && zen-cli z_getoperationstatus '[\"'" +
+                       "$OPID'\"]' && echo -e \"\\n\\nPlease verify that the output contains \\\"status\\\": \\\"success\\\".\\n\\nIf this is not the case," +
+                       " please run the python script again and retry with the same address or a different address.\\n\" && read -p " +
+                       "\"Press enter to continue.\"")
             if address in commands.keys():
                 commands[address].append(command)
             else:
