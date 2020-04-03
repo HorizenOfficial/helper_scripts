@@ -44,8 +44,8 @@ def main():
                         required=True, help="zend RPC interface to connect to, e.g. \"http://127.0.0.1:8231\"")
     parser.add_argument("-t", "--rpc-timeout", dest="rpc_timeout", nargs="?", type=int, default=300, const=300,
                         required=False, help="timeout for RPC requests in seconds (default 300)")
-    parser.add_argument("-l", "--limit-vin", dest="limit_vin", nargs="?", type=int, default=500, const=500,
-                        required=False, help="utxo inputs per transaction (default 500, max 1200)")
+    parser.add_argument("-l", "--limit-vin", dest="limit_vin", nargs="?", type=int, default=300, const=300,
+                        required=False, help="utxo inputs per transaction (default 300, max 600)")
     parser.add_argument("--debug", dest="debug", action="store_true",
                         required=False, help="print debug messages")
 
@@ -63,7 +63,7 @@ def main():
     if creds:
         RPC_URL = RPC_URL.split("/", 2)[0] + "//"  + creds + RPC_URL.split("/", 2)[2]
     RPC_TIMEOUT = args.rpc_timeout
-    LIMIT_VIN = min(args.limit_vin, 1200)
+    LIMIT_VIN = min(args.limit_vin, 600)
     DEBUG = args.debug
 
     if DEBUG:
@@ -75,11 +75,14 @@ def main():
     rpc_connection = AuthServiceProxy(RPC_URL, timeout=RPC_TIMEOUT)
     all_unspent = rpc_connection.listunspent(MIN_CONF, MAX_CONF, FROM_ADDR)
     spendable_utxo = filter_unspendable(all_unspent)
-    utxo_by_address = group_by_address(spendable_utxo)
+    # sort by amount, low to high
+    spendable_utxo_sorted = sorted(spendable_utxo, key = lambda i: i["amount"])
+    utxo_by_address = group_by_address(spendable_utxo_sorted)
 
     commands = OrderedDict()
     for address, utxos in utxo_by_address.items():
         n = LIMIT_VIN
+        # split into chunks of LIMIT_VIN size
         chunks = [utxos[i * n:(i + 1) * n] for i in range((len(utxos) + n - 1) // n )]
         for chunk in chunks:
             amount = Decimal("0")
