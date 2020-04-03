@@ -90,11 +90,11 @@ def main():
             for utxo in chunk:
                 amount += utxo["amount"]
             warning = ""
-            if amount - FEE < DUST_THRESHOLD:
-                warning = "#Error: Transaction output below dust threshold "
+            if amount - FEE < DUST_THRESHOLD or amount - FEE < FEE:
+                warning = "#Error: Transaction output below dust threshold or smaller than fee"
             command = (warning + "OPID=$(zen-cli z_sendmany \"" + address  + "\" '[{\"address\": \"" + DEST_ADDR + "\", \"amount\": " +
                        str(amount - FEE) + "}]' " + str(MIN_CONF) + " " + str(FEE) + "); sleep 5 && zen-cli z_getoperationstatus '[\"'" +
-                       "$OPID'\"]' && echo -e \"\\n\\nPlease verify that the output contains \\\"status\\\": \\\"success\\\".\\n\\nIf this is not the case," +
+                       "$OPID'\"]'; echo -e \"\\n\\nPlease verify that the output contains \\\"status\\\": \\\"success\\\".\\n\\nIf this is not the case," +
                        " please run the python script again and retry with the same address or a different address.\\n\" && read -p " +
                        "\"Press enter to continue.\"")
             if address in commands.keys():
