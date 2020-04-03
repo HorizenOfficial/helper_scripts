@@ -6,20 +6,27 @@ Alternatively Docker can be used with ./docker_build.sh, then execute the script
 
 ```shell
 usage: merge_to_address.py [-h] -d DEST_ADDR [-f FROM_ADDR [FROM_ADDR ...]]
-                           [--min-conf [MIN_CONF]] [-u RPC_USER] [-p RPC_PASS]
-                           -r RPC_URL [-t [RPC_TIMEOUT]] [-l [LIMIT_VIN]]
+                           [--min-conf [MIN_CONF]] -u RPC_USER -p RPC_PASS -r
+                           RPC_URL [-t [RPC_TIMEOUT]] [-l [LIMIT_VIN]]
                            [--debug]
 
 optional arguments:
   -h, --help            show this help message and exit
-  -d DEST_ADDR, --destinationaddr DEST_ADDR
-                        ZEN address to send to
   -f FROM_ADDR [FROM_ADDR ...], --fromaddr FROM_ADDR [FROM_ADDR ...]
                         ZEN addresses to send from, space separated e.g. "-f
                         addr1 addr2"
   --min-conf [MIN_CONF]
                         minumum number of confirmations to pass to listunspent
                         (default 1)
+  -t [RPC_TIMEOUT], --rpc-timeout [RPC_TIMEOUT]
+                        timeout for RPC requests in seconds (default 300)
+  -l [LIMIT_VIN], --limit-vin [LIMIT_VIN]
+                        utxo inputs per transaction (default 300, max 600)
+  --debug               print debug messages
+
+required arguments:
+  -d DEST_ADDR, --destinationaddr DEST_ADDR
+                        ZEN address to send to
   -u RPC_USER, --rpc-user RPC_USER
                         zend RPC username
   -p RPC_PASS, --rpc-password RPC_PASS
@@ -27,11 +34,6 @@ optional arguments:
   -r RPC_URL, --rpc-url RPC_URL
                         zend RPC interface to connect to, e.g.
                         "http://127.0.0.1:8231"
-  -t [RPC_TIMEOUT], --rpc-timeout [RPC_TIMEOUT]
-                        timeout for RPC requests in seconds (default 300)
-  -l [LIMIT_VIN], --limit-vin [LIMIT_VIN]
-                        utxo inputs per transaction (default 300, max 600)
-  --debug               print debug messages
 ```
 
 Example output:
