@@ -16,7 +16,7 @@ optional arguments:
                         ZEN addresses to send from, space separated e.g. "-f
                         addr1 addr2"
   --min-conf [MIN_CONF]
-                        minumum number of confirmations to pass to listunspent
+                        minimum number of confirmations to pass to listunspent
                         (default 1)
   -t [RPC_TIMEOUT], --rpc-timeout [RPC_TIMEOUT]
                         timeout for RPC requests in seconds (default 300)

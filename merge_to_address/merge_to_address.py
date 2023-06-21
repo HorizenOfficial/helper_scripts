@@ -30,13 +30,13 @@ def group_by_address(spendable_utxo):
 
 def main():
     parser = argparse.ArgumentParser()
-    requiredNamed = parser.add_argument_group('required arguments')
+    requiredNamed = parser.add_argument_group("required arguments")
     requiredNamed.add_argument("-d", "--destinationaddr", dest="dest_addr", type=str,
                         required=True, help="ZEN address to send to")
     parser.add_argument("-f", "--fromaddr", dest="from_addr", nargs="+", default=[],
                         required=False, help="ZEN addresses to send from, space separated e.g. \"-f addr1 addr2\"")
     parser.add_argument("--min-conf", dest="min_conf", nargs="?", type=int, default=1, const=1,
-                        required=False, help="minumum number of confirmations to pass to listunspent (default 1)")
+                        required=False, help="minimum number of confirmations to pass to listunspent (default 1)")
     requiredNamed.add_argument("-u", "--rpc-user", dest="rpc_user", type=str,
                         required=True, help="zend RPC username")
     requiredNamed.add_argument("-p", "--rpc-password", dest="rpc_pass", type=str,
